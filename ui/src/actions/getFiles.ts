@@ -10,7 +10,7 @@ export const getFiles = (
 ) => {
   toast.loading("Loading files...");
   axios
-    .get(`/api/cdn/${type === "images" ? "image" : "doc"}/all`)
+    .get(`/api/cdn/${type === "images" ? "image" : type === "documents" ? "doc" : "file"}/all`)
     .then((res) => {
       res.data != null && setFiles(res.data)
       toast.dismiss();
