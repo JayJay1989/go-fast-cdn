@@ -30,7 +30,7 @@ release:
   target_commitish: '{{ .Commit }}'
   draft: true
   github:
-    owner: kevinanielsen
+    owner: jayjay1989
     name: go-fast-cdn
 
 archives:
