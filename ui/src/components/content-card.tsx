@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DownloadCloud, FileText, Files, Trash2 } from "lucide-react";
+import {DownloadCloud, FileText, Files, Trash2, AppWindow} from "lucide-react";
 import { toast } from "react-hot-toast";
 import { getFiles } from "../actions/getFiles";
 import { useAtom } from "jotai";
@@ -68,8 +68,10 @@ const ContentCard: React.FC<TContentCardProps> = ({
               height={150}
               className="object-cover max-h-[150px] max-w-[224px]"
             />
+          ) : type === "documents" ? (
+              <FileText size="128" />
           ) : (
-            <FileText size="128" />
+              <AppWindow size="128" />
           )}
         </DialogTrigger>
         <FileDataModal filename={file_name} type={type} />

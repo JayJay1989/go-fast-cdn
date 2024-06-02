@@ -24,7 +24,7 @@ const FilesInput: React.FC<{
         <UploadPreview fileNames={fileNames} type="files"/>
       </div>
       <label htmlFor="file" className="flex flex-col">
-        Select Document
+        Select File
         <input
           onChange={getFileNames}
           type="file"

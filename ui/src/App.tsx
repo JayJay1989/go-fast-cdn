@@ -1,7 +1,7 @@
 import { Link, Route } from "wouter";
 import { Toaster } from "react-hot-toast";
 import Files from "./components/files";
-import { Image, Upload as UploadIcon, Files as FilesIcon, BookText as DocIcon } from "lucide-react";
+import { Image, Upload as UploadIcon, AppWindow as FilesIcon, BookText as DocIcon } from "lucide-react";
 import Seperator from "./components/seperator";
 import Upload from "./components/upload";
 import ContentSize from "./components/content-size";
