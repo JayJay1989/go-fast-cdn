@@ -7,7 +7,7 @@ import Seperator from "./seperator";
 
 type TFileDataModalProps = {
   filename?: string;
-  type?: "images" | "documents";
+  type?: "images" | "documents" | "files";
 };
 
 const FileDataModal: React.FC<TFileDataModalProps> = ({ filename, type }) => {
@@ -16,7 +16,7 @@ const FileDataModal: React.FC<TFileDataModalProps> = ({ filename, type }) => {
     if (filename && type) {
       axios
         .get<FileMetadata>(
-          `/api/cdn/${type === "documents" ? "doc" : "image"}/${filename}`
+          `/api/cdn/${type === "documents" ? "doc" : type === "images" ? "image" : "file"}/${filename}`
         )
         .then((res) => {
           toast.dismiss();

@@ -6,7 +6,7 @@ import { filesAtom } from "../store";
 import { getFiles } from "../actions/getFiles";
 
 type TFilesProps = {
-  type: "images" | "documents";
+  type: "images" | "documents" | "files";
 };
 
 const Files: React.FC<TFilesProps> = ({ type }) => {

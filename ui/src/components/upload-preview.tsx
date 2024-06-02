@@ -1,5 +1,6 @@
 import { FileText } from "lucide-react";
 import { FileImage } from "lucide-react";
+import { BookText } from "lucide-react";
 
 const UploadPreview = ({fileNames, type}: {fileNames: string[], type: string}) => {
   if (fileNames.length >= 7) {
@@ -15,7 +16,7 @@ const UploadPreview = ({fileNames, type}: {fileNames: string[], type: string}) =
       <section className="flex flex-row overflow-hidden">
         {fileNames.map(fileName => (
           <div className="border rounded-lg w-64 min-h-[264px] max-w-[256px] flex flex-col overflow-hidden justify-center items-center">
-            {type == "docs" ? <FileText size="128" /> : <FileImage size="128" />}
+            {type == "docs" ? <FileText size="128" /> : type == "files" ? <FileImage size="128" /> : <BookText size="128"/>}
             <p className="w-full px-2 truncate text-center">{fileName}</p>
           </div>
         ))}
@@ -24,7 +25,7 @@ const UploadPreview = ({fileNames, type}: {fileNames: string[], type: string}) =
   } else {
     return (
       <div className="border rounded-lg w-64 min-h-[264px] max-w-[256px] flex justify-center items-center">
-        {type == "docs" ? <FileText size="128" /> : <FileImage size="128" />}
+        {type == "docs" ? <FileText size="128" /> : type == "files" ? <FileImage size="128" /> : <BookText size="128"/>}
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import DocsInput from "./docs-input";
 import ImageInput from "./image-input";
+import FileInput from "./files-input";
 import Seperator from "./seperator";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -15,7 +16,7 @@ const Upload = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [__, setSize] = useAtom(sizeAtom);
 
-  const tab = useParams<{ tab: "images" | "docs" }>().tab;
+  const tab = useParams<{ tab: "images" | "docs" | "files" }>().tab;
 
   if (tab === undefined || tab === null) {
     window.location.pathname = "/upload/docs";
@@ -28,7 +29,7 @@ const Upload = () => {
 
     if (files !== null && files !== undefined) {
       toast.loading("Uploading...");
-      const type = tab === "docs" ? "doc" : "image";
+      const type = tab === "docs" ? "doc" :  tab === "images" ? "image" : "file";
 
       for (let file of files) {
         const form = new FormData();
@@ -53,7 +54,7 @@ const Upload = () => {
     }
   };
 
-  const switchTab = (tab: "docs" | "images") => {
+  const switchTab = (tab: "docs" | "images" | "files") => {
     window.location.pathname = `upload/${tab}`;
   };
 
@@ -64,31 +65,42 @@ const Upload = () => {
       <div className="border rounded-lg shadow-lg h-full overflow-hidden flex flex-col">
         <nav className="flex justify-evenly h-10 border-b">
           <button
-            onClick={() => switchTab("docs")}
-            className={`w-full h-full flex justify-center items-center ${
-              tab === "docs" && "border-b-sky-500 border-b-2"
-            }`}
+              onClick={() => switchTab("docs")}
+              className={`w-full h-full flex justify-center items-center ${
+                  tab === "docs" && "border-b-sky-500 border-b-2"
+              }`}
           >
             Documents
           </button>
-          <div className="h-10 border-r" />
+          <div className="h-10 border-r"/>
           <button
-            onClick={() => switchTab("images")}
-            className={`w-full h-full flex justify-center items-center ${
-              tab === "images" && "border-b-sky-500 border-b-2"
-            }`}
+              onClick={() => switchTab("images")}
+              className={`w-full h-full flex justify-center items-center ${
+                  tab === "images" && "border-b-sky-500 border-b-2"
+              }`}
           >
             Images
           </button>
+          <div className="h-10 border-r"/>
+          <button
+              onClick={() => switchTab("files")}
+              className={`w-full h-full flex justify-center items-center ${
+                  tab === "files" && "border-b-sky-500 border-b-2"
+              }`}
+          >
+            Files
+          </button>
         </nav>
         <form action="" className="flex flex-col h-full" onSubmit={(e) => {
-              e.preventDefault();
-              uploadFile();
-            }}>
+          e.preventDefault();
+          uploadFile();
+        }}>
           {tab === "docs" ? (
-            <DocsInput fileRef={file} />
+              <DocsInput fileRef={file}/>
+          ) : tab === "images" ? (
+              <ImageInput fileRef={file}/>
           ) : (
-            <ImageInput fileRef={file} />
+              <FileInput fileRef={file}/>
           )}
           <button
             type="submit"

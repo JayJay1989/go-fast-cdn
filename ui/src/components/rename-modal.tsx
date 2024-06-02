@@ -16,7 +16,7 @@ import handleRenameFile from "../actions/handleRenameFile";
 
 type RenameModalProps = {
   filename?: string;
-  type: "images" | "documents";
+  type: "images" | "documents" | "files";
 };
 
 const RenameModal: React.FC<RenameModalProps> = ({ filename, type }) => {

@@ -5,7 +5,7 @@ import File from "../types/file";
 import { SetAtom } from "@/types/setAtom";
 
 export const getFiles = (
-  type: "images" | "documents",
+  type: "images" | "documents" | "files",
   setFiles: SetAtom<[SetStateAction<File[]>], void>,
 ) => {
   toast.loading("Loading files...");

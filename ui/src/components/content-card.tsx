@@ -12,7 +12,7 @@ import FileDataModal from "./file-data-modal";
 
 type TContentCardProps = {
   file_name?: string;
-  type?: "images" | "documents";
+  type?: "images" | "documents" | "files";
   ID?: number;
   createdAt?: Date;
   updatedAt?: Date;
@@ -29,7 +29,7 @@ const ContentCard: React.FC<TContentCardProps> = ({
 }) => {
   const url = `${window.location.protocol}//${
     window.location.host
-  }/api/cdn/download/${type === "documents" ? "docs" : "images"}/${file_name}`;
+  }/api/cdn/download/${type === "documents" ? "docs" : type === "images" ? "images" : "files"}/${file_name}`;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setFiles] = useAtom(filesAtom);
@@ -40,7 +40,7 @@ const ContentCard: React.FC<TContentCardProps> = ({
     toast.loading("Deleting file...");
     axios
       .delete(
-        `/api/cdn/delete/${type === "documents" ? "doc" : "image"}/${file_name}`
+        `/api/cdn/delete/${type === "documents" ? "docs" : type === "images" ? "images" : "files"}/${file_name}`
       )
       .then((res) => {
         if (res.status === 200) {
